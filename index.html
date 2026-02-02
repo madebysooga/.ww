@@ -32,20 +32,20 @@
 ></script>
 
 <script>
+  
 // Inicjalizacja mapy z centrum i zoomem
+  
 const map = L.map('map', {
-  crs: L.CRS.Simple, // prosta siatka bez geo-współrzędnych
+  crs: L.CRS.Simple,
   minZoom: -2,
   maxZoom: 4,
   zoomControl: true,
 }).setView([0, 0], 0);
 
-// Wymiary mapy GTA V w pikselach
-const mapWidth = 3000;  // szerokość obrazu mapy
-const mapHeight = 3000; // wysokość obrazu mapy
+const mapWidth = 3000;
+const mapHeight = 3000;
 
-// Dodajemy obraz mapy jako warstwę
-const imageUrl = 'https://i.imgur.com/3kWJd7A.jpg'; // przykładowy link do mapy GTA V
+const imageUrl = 
 const imageBounds = [[0, 0], [mapHeight, mapWidth]];
 
 L.imageOverlay(imageUrl, imageBounds).addTo(map);
