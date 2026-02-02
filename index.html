@@ -1,58 +1,65 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mapa GTA V</title>
-
-<!-- Dołączamy Leaflet CSS -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-sA+rlJ1ePhK3xQuzU11v1eOm0nHpLvF2xhNQz6FJtkM="
-  crossorigin=""
-/>
-
-<style>
-  body, html, #map {
-    height: 100%;
-    margin: 0;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mapa GTA V</title>
+  
+  <!-- Dołącz Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+rlJ1ePhK3xQuzU11v1eOm0nHpLvF2xhNQz6FJtkM="
+    crossorigin=""
+  />
+  
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </head>
 <body>
 
-<div id="map"></div>
+  <div id="map"></div>
 
-<!-- Dołączamy Leaflet JS -->
-<script
-  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-  integrity="sha256-oMb8PhlB5g6G5m7AGXnQKteY7D+c05kL1PimUItlL14="
-  crossorigin=""
-></script>
+  <!-- Dołącz Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-oMb8PhlB5g6G5m7AGXnQKteY7D+c05kL1PimUItlL14="
+    crossorigin=""
+  ></script>
 
-<script>
-  
-// Inicjalizacja mapy z centrum i zoomem
-  
-const map = L.map('map', {
-  crs: L.CRS.Simple,
-  minZoom: -2,
-  maxZoom: 4,
-  zoomControl: true,
-}).setView([0, 0], 0);
+  <script>
+    // Inicjalizacja mapy z prostym CRS (bez geo-współrzędnych)
+    const map = L.map('map', {
+      crs: L.CRS.Simple,
+      minZoom: -2,
+      maxZoom: 4,
+      zoomControl: true,
+    });
 
-const mapWidth = 3000;
-const mapHeight = 3000;
+    // Ustaw widok na początek (możesz zmienić)
+    map.setView([1500, 1500], 0);
 
-const imageUrl = 
-const imageBounds = [[0, 0], [mapHeight, mapWidth]];
+    // Wymiary obrazu mapy GTA V w pikselach (dopasuj do swojego pliku)
+    const mapWidth = 2048;
+    const mapHeight = 2048;
 
-L.imageOverlay(imageUrl, imageBounds).addTo(map);
+    // Ścieżka do Twojego obrazka mapy (plik w tym samym folderze)
+    const imageUrl = 'GTAV_ROADMAP_2048x2048.png';
 
-// Ustawiamy ograniczenia mapy
-map.setMaxBounds(imageBounds);
-</script>
+    // Granice obrazu w układzie współrzędnych mapy
+    const imageBounds = [[0, 0], [mapHeight, mapWidth]];
+
+    // Dodajemy obraz jako nakładkę
+    L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+    // Ograniczamy przesuwanie mapy do wymiarów obrazka
+    map.setMaxBounds(imageBounds);
+  </script>
 
 </body>
 </html>
